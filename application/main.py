@@ -7,7 +7,7 @@ from export_data import data_export
 from constants import BASE_FILENAMES, FILEPATH, REPO_PATH
 import params
 
-# pwl generation
+
 def _pwl_generation():
     f = open(f"{FILEPATH}/vsource.txt", "w")
     time = np.linspace(params.tstart, params.tstop, 1000)
@@ -17,6 +17,7 @@ def _pwl_generation():
         file_lines += f"{t} {v} "
     f.write(f"pwl ({file_lines})")
     f.close()
+
 
 if 'tmp_data' not in os.listdir():
     os.mkdir('tmp_data')

@@ -1,0 +1,37 @@
+Memristor Random network 
+.include ../models/pershin.sub
+V1 vin gnd sin (0 10.0 1
+Xmem0 vin n10 l0 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+Xmem1 vin n01 l1 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+Xmem2 n01 n11 l2 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+Xmem3 n01 n02 l3 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+Xmem4 n02 n12 l4 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+Xmem5 n02 n03 l5 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+Xmem6 n03 n13 l6 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+Xmem7 n10 n20 l7 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+Xmem8 n10 n11 l8 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+Xmem9 n11 n21 l9 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+Xmem10 n11 n12 l10 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+Xmem11 n12 n22 l11 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+Xmem12 n12 n13 l12 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+Xmem13 n13 n23 l13 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+Xmem14 n20 gnd l14 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+Xmem15 n20 n21 l15 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+Xmem16 n21 n31 l16 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+Xmem17 n21 n22 l17 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+Xmem18 n22 n32 l18 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+Xmem19 n22 n23 l19 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+Xmem20 n23 n33 l20 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+Xmem21 gnd n31 l21 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+Xmem22 n31 n32 l22 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+Xmem23 n32 n33 l23 memristor alpha=0 beta=500000.0 Roff=200000.0 Ron=2000.0 Rinit=200000.0 Vt=0.6
+.tran 0.002 3 1e-09 uic
+.control
+run
+set wr_vecnames
+set wr_singlescale
+wrdata /home/ignaciopineyro/MemNet/application/tmp_data/simulation_0_states.csv l0 l1 l2 l3 l4 l5 l6 l7 l8 l9 l10 l11 l12 l13 l14 l15 l16 l17 l18 l19 l20 l21 l22 l23  
+wrdata /home/ignaciopineyro/MemNet/application/tmp_data/simulation_0_iv.csv i(v1) vin
+quit
+.endc
+.end

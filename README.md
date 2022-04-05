@@ -1,4 +1,4 @@
-# MemNet_1
+# MemNet_2 - A forked repository from MemNet_1 (fabriziodifran/MemNet)
 This repository contains code to simulate square-shaped memristive arrays of an arbitrary size*. 
 The size (N) is determined by the number of nodes of each side in a matrix geometrical array. 
 Every two consecutive nodes, one memristive unit is placed either along horizontal or vertical directions.  
@@ -20,11 +20,13 @@ Python 3 is used to set the array. Numpy and Pandas packages are required.
 NGSPICE is the engine required for individual unit's simulation. 
 
 ## Getting started
-Download the full repository and make sure NGSPICE is path-available (callable from Python scripts). 
+* Download the full repository and make sure NGSPICE is path-available (callable from Python scripts). 
 
-Set the parameters by editing params.py and run main.py. 
+* Install the required libraries - ```pip install -r requirements.txt```
 
-A folder named exported_data will be created and two outputs files will be displayed: 
+* Set the parameters by editing params.py and run main.py. 
+
+* A folder named exported_data will be created and two outputs files will be displayed: 
 
 > simulation_iv 
 > > containing three columns: time, current, and voltage (the latter two measured at the source)
