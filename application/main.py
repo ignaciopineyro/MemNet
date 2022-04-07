@@ -4,7 +4,7 @@ import numpy as np
 import os
 
 from export_data import data_export
-from constants import BASE_FILENAMES, FILEPATH, REPO_PATH
+from constants import BASE_FILENAMES, FILEPATH
 import params
 
 
@@ -34,4 +34,3 @@ netlist.run_ngspice(f"{BASE_FILENAMES}_0")
 state_list.append(netlist.state_nodes) 
 
 data_export(state_list, 1)
-

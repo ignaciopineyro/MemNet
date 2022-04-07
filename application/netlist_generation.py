@@ -45,7 +45,6 @@ class SpiceNetlist():
                 last_row_nodes.append(node)
         return last_row_nodes[0]
 
-
     def _write_netlist_file(self, connections, netlist_name, sensibilize_params):
         states = ""
         f = open(f"{FILEPATH}/{netlist_name}.cir", "w+")   
