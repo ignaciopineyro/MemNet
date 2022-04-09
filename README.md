@@ -1,5 +1,8 @@
-# MemNet_2 - A forked repository from MemNet_1 (fabriziodifran/MemNet)
-This repository contains code to simulate square-shaped memristive arrays of an arbitrary size*. 
+[comment]: <> (# MemNet_2 - A forked repository from MemNet_1 &#40;fabriziodifran/MemNet&#41;)
+This is a forked repository from fabriziodifran/MemNet. The main goal of this project is to deal with the 
+high computation times and scalability constraint present on previous stages of the research.
+
+This repository contains code to simulate square-shaped memristive arrays of an arbitrary size. 
 The size (N) is determined by the number of nodes of each side in a matrix geometrical array. 
 Every two consecutive nodes, one memristive unit is placed either along horizontal or vertical directions.  
 The model determining each memristive unit's behaviour has been adapted from previously developed models: 
@@ -8,26 +11,26 @@ The model determining each memristive unit's behaviour has been adapted from pre
 > 
 > I. Vourkas and G. Sirakoulis, 'Memristor-Based Nanoelectronic Computing Circuits and Architectures' (Springer, 2015).
 
-This code has been used to generate data for the manuscript
-
-> F. Di Francesco, G.A. Sanca, and C.P. Quinteros. 'Spatial emerging texture in simulated memristive arrays'. https://arxiv.org/submit/3880033
-
-*Although arbitrary sizes are allowed, the simulation is not optimized for big sizes (N>50) making the code time-consuming. 
-Further versions will deal with this issue. 
 
 ## Requirements
-Python 3 is used to set the array. Numpy and Pandas packages are required.
-NGSPICE is the engine required for individual unit's simulation. 
+- Python3
+- Numpy
+- Pandas
+- Networkx
+- Matplotlib
+- NGSpice (with executable path on PATH enviroment variable)
 
 ## Getting started
-* Download the full repository and make sure NGSPICE is path-available (callable from Python scripts). 
-
+* Download the full repository
+* Install NGSpice and add its exec file to the PATH variable:
+    - Windows: http://ngspice.sourceforge.net/download.html
+    - Linux: ```sudo apt-get install ngspice```
 * Install the required libraries - ```pip install -r requirements.txt```
+* Set the parameters by editing params.py and run main.py.
+* Run code on /application folder: ```python3 main.py```
 
-* Set the parameters by editing params.py and run main.py. 
-
-* A folder named exported_data will be created and two outputs files will be displayed: 
-
+## Simulated results
+Once the script ```main.py``` is executed, a folder named exported_data should be created and two outputs files will be displayed: 
 > simulation_iv 
 > > containing three columns: time, current, and voltage (the latter two measured at the source)
 > > 
