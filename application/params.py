@@ -1,22 +1,34 @@
-# Network parameters
-network_dimention = 4
-model = "pershin"
-p_high_state_init = 1
+from dataclasses import dataclass
+from constants import Models, FunctionType
 
-# Spice Vin parameters
-v_type = "sine"
-amplitude = 10.0
-freq = 1
 
-# Spice simulation parameters
-samples = 1500
-tstop = 3
-tstep = tstop/samples
-tstart = 1e-9
+@dataclass()
+class NetworkParameters:
+    dimension_N: int
+    dimension_M: int
+    model: Models
+    p_high_state_init: int
 
-# Pershin's model parameters
-Roff = 2e5
-ratio = 100
-vt = 0.6
-beta = 5e5
-alpha = 0
+
+@dataclass()
+class VinParameters:
+    v_type: FunctionType
+    amplitude: float
+    freq: int
+
+
+@dataclass()
+class SpiceParameters:
+    samples: int
+    tstop: int
+    tstep: float
+    tstart: float
+
+
+@dataclass()
+class PershinParameters:
+    Roff: float
+    ratio: int
+    vt: float
+    beta: float
+    alpha: float

@@ -1,11 +1,11 @@
-from netlist_generation import SpiceNetlist
-from network_generation import Network
 import numpy as np
 import os
-
-from export_data import data_export
-from constants import BASE_FILENAMES, FILEPATH
 import params
+
+from netlist_generation import SpiceNetlist
+from network_generation import Network
+from export_data import data_export
+from constants import Path
 
 
 def _pwl_generation():
