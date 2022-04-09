@@ -1,10 +1,10 @@
-from params import NetworkParameters
+from config import NetworkParameters
 import networkx as nx
 import matplotlib.pyplot as plt
 from constants import NodeColors
 
 
-class Network:
+class NetworkService:
     def __init__(self):
         self.N = NetworkParameters.dimension_N
         self.M = NetworkParameters.dimension_M
@@ -12,8 +12,9 @@ class Network:
     def generate_network(self):
         return nx.grid_2d_graph(self.N, self.M)
 
+    # TODO: Se usa este metodo?
     @staticmethod
-    def plot_network(self, graph):
+    def plot_network(graph) -> None:
         pos = {(x, y): (y, -x) for x, y in graph.nodes()}
         labels = dict(((i, j), f"{i},{j}") for i, j in graph.nodes())
         plt.close()

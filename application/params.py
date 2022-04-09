@@ -4,6 +4,7 @@ from constants import Models, FunctionType
 
 @dataclass()
 class NetworkParameters:
+    """N by M network using a given sub-circuit model."""
     dimension_N: int
     dimension_M: int
     model: Models
@@ -12,6 +13,7 @@ class NetworkParameters:
 
 @dataclass()
 class VinParameters:
+    """Input voltage source with a given waveform, amplitude value and frequency."""
     v_type: FunctionType
     amplitude: float
     freq: int
@@ -19,6 +21,7 @@ class VinParameters:
 
 @dataclass()
 class SpiceParameters:
+    """Amount of samples to simulate, start and end time for the simulation and the step between samples."""
     samples: int
     tstop: int
     tstep: float
@@ -27,6 +30,7 @@ class SpiceParameters:
 
 @dataclass()
 class PershinParameters:
+    """WIP"""
     Roff: float
     ratio: int
     vt: float
