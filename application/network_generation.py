@@ -1,4 +1,4 @@
-from config import NetworkParameters
+from config import network_parameters
 import networkx as nx
 import matplotlib.pyplot as plt
 from constants import NodeColors
@@ -6,8 +6,8 @@ from constants import NodeColors
 
 class NetworkService:
     def __init__(self):
-        self.N = NetworkParameters.dimension_N
-        self.M = NetworkParameters.dimension_M
+        self.N = network_parameters.dimension_N
+        self.M = network_parameters.dimension_M
 
     def generate_network(self):
         return nx.grid_2d_graph(self.N, self.M)

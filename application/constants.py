@@ -16,6 +16,11 @@ class FunctionType(Enum):
     PWL = 'pwl'
 
 
+class SpiceNodeName(Enum):
+    VIN = 'vin'
+    GND = 'gnd'
+
+
 class TableColumns(Enum):
     TIME = 'Time'
     CURRENT = 'Current'

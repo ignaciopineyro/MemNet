@@ -1,9 +1,8 @@
 import os
 import numpy as np
 
-from application.params import PershinParameters, VinParameters, SpiceParameters
-from constants import FILEPATH
-from config import NetworkParameters
+from constants import FILEPATH, SpiceNodeName
+from config import network_parameters, vin_parameters, spice_parameters, pershin_parameters
 
 
 class SpiceNetlistService:
@@ -16,20 +15,20 @@ class SpiceNetlistService:
         for edge in network.edges:
             node1 = edge[0]
             node2 = edge[1]
-            gnd_node = self._get_gnd_node(network, NetworkParameters.dimension_N)
+            gnd_node = self._get_gnd_node(network, network_parameters.dimension_N)
             voltage_input_node = list(network.nodes)[0] 
             
             n1 = f"n{node1[0]}{node1[1]}"
             n2 = f"n{node2[0]}{node2[1]}"
 
             if node1 == voltage_input_node:
-                n1 = "vin"
+                n1 = SpiceNodeName.VIN
                 
             if node1 == gnd_node:
-                n1 = "gnd"
+                n1 = SpiceNodeName.GND
                 
             if node2 == gnd_node:
-                n2 = "gnd"
+                n2 = SpiceNodeName.GND
             
             self.state_nodes.append(f"L({node1[0]};{node1[1]})({node2[0]};{node2[1]})")
             self.connections.append((n1, n2))
@@ -51,18 +50,18 @@ class SpiceNetlistService:
         states = ""
         f = open(f"{FILEPATH}/{netlist_name}.cir", "w+")   
         f.write("Memristor Random network \n")
-        f.write(f".include ../models/{NetworkParameters.model}.sub\n")
+        f.write(f".include ../models/{network_parameters.model.value}.sub\n")
         vin = self._get_vin_type()
         f.write(f"V1 vin gnd {vin}\n")
 
         # TODO: Esto deberia variar segun que modelo se elija
         for idx, c in enumerate(connections):
-            alpha = PershinParameters.alpha
-            beta = PershinParameters.beta
-            vt = PershinParameters.vt
-            roff = PershinParameters.Roff
-            ratio = PershinParameters.ratio
-            p_high_state_init = NetworkParameters.p_high_state_init
+            alpha = pershin_parameters.alpha
+            beta = pershin_parameters.beta
+            vt = pershin_parameters.vt
+            roff = pershin_parameters.Roff
+            ratio = pershin_parameters.ratio
+            p_high_state_init = network_parameters.p_high_state_init
             rinit = np.random.choice((roff/ratio, roff), p=[1-p_high_state_init, p_high_state_init])
             
             model_params = f"alpha={alpha} beta={beta} Roff={roff} Ron={roff/ratio} Rinit={rinit} Vt={vt}"
@@ -70,7 +69,7 @@ class SpiceNetlistService:
             f.write(f"Xmem{idx} {c[0]} {c[1]} l{idx} memristor {model_params}\n")
             states += f"l{idx} "
 
-        f.write(f".tran {SpiceParameters.tstep} {SpiceParameters.tstop} {SpiceParameters.tstart} uic\n")
+        f.write(f".tran {spice_parameters.tstep} {spice_parameters.tstop} {spice_parameters.tstart} uic\n")
         f.write(".control\n")
         f.write("run\n")
         # f.write("option numdgt=7\n")
@@ -84,10 +83,11 @@ class SpiceNetlistService:
         f.write(".end\n")
         f.close()
 
+    # TODO: Implementar Strategy Pattern
     def _get_vin_type(self):
-        if VinParameters.v_type == "sine":
-            return f"sin (0 {VinParameters.amplitude} {VinParameters.freq}"
-        elif VinParameters.v_type == "pwl":
+        if vin_parameters.v_type.value == "sine":
+            return f"sin (0 {vin_parameters.amplitude} {vin_parameters.freq}"
+        elif vin_parameters.v_type.value == "pwl":
             f = open(f"{FILEPATH}/vsource.txt", "r")
             pwl = f.read()
             return f"{pwl}"
