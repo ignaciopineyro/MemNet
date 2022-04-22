@@ -22,13 +22,13 @@ class SpiceNetlistService:
             n2 = f"n{node2[0]}{node2[1]}"
 
             if node1 == voltage_input_node:
-                n1 = SpiceNodeName.VIN
+                n1 = SpiceNodeName.VIN.value
                 
             if node1 == gnd_node:
-                n1 = SpiceNodeName.GND
+                n1 = SpiceNodeName.GND.value
                 
             if node2 == gnd_node:
-                n2 = SpiceNodeName.GND
+                n2 = SpiceNodeName.GND.value
             
             self.state_nodes.append(f"L({node1[0]};{node1[1]})({node2[0]};{node2[1]})")
             self.connections.append((n1, n2))
@@ -51,6 +51,7 @@ class SpiceNetlistService:
         f = open(f"{FILEPATH}/{netlist_name}.cir", "w+")   
         f.write("Memristor Random network \n")
         f.write(f".include ../models/{network_parameters.model.value}.sub\n")
+        f.write(f".model D d\n")
         vin = self._get_vin_type()
         f.write(f"V1 vin gnd {vin}\n")
 
@@ -86,7 +87,7 @@ class SpiceNetlistService:
     # TODO: Implementar Strategy Pattern
     def _get_vin_type(self):
         if vin_parameters.v_type.value == "sine":
-            return f"sin (0 {vin_parameters.amplitude} {vin_parameters.freq}"
+            return f"sin (0 {vin_parameters.amplitude} {vin_parameters.freq})"
         elif vin_parameters.v_type.value == "pwl":
             f = open(f"{FILEPATH}/vsource.txt", "r")
             pwl = f.read()
