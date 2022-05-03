@@ -3,8 +3,8 @@ from params import NetworkParameters, VinParameters, SpiceParameters, PershinPar
 
 
 network_parameters = NetworkParameters(
-    dimension_N=4,
-    dimension_M=4,
+    dimension_N=2,
+    dimension_M=2,
     model=Models.PERSHIN,
     p_high_state_init=1,
 )

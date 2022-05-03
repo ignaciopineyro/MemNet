@@ -30,7 +30,6 @@ class ExportDataService:
             data_iv.columns = [TableColumns.TIME, TableColumns.CURRENT, TableColumns.VOLTAGE]
             data_states = pd.read_csv(f"{self.filepath}/{self.base_filenames}_{i}_states.csv", sep="\s+")
             data_states.columns = ["time"] + states[i]
-
             data_iv.to_csv(f"{simulation_dir}/{self.base_filenames}_{i}_iv.csv", sep=",", header=True, index=False)
             data_states.to_csv(
                 f"{simulation_dir}/{self.base_filenames}_{i}_states.csv", sep=",", header=True, index=False
