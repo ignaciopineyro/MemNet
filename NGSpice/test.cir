@@ -1,0 +1,14 @@
+Memristor test implementation
+
+.include pershin.sub
+
+V1 vin gnd sin 0 3 1
+
+xmem0 vin gnu l0 memristor
+
+.tran 2m 2 1e-9 uic
+.control
+run
+write memristor_simulation.csv
+.endc
+.end
