@@ -1,11 +1,11 @@
 import os
 import numpy as np
 
-from constants import FILEPATH, SpiceNodeName
-from config import network_parameters, vin_parameters, spice_parameters, pershin_parameters
+from application.constants import FILEPATH, SpiceNodeName
+from application.config import network_parameters, vin_parameters, spice_parameters, pershin_parameters
 
 
-class SpiceNetlistService:
+class NetlistService:
 
     def __init__(self):
         self.connections = []

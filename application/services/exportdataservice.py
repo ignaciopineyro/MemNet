@@ -2,7 +2,7 @@ import os
 import pandas as pd
 
 from datetime import datetime
-from constants import BASE_FILENAMES, REPO_PATH, FILEPATH, TableColumns
+from application.constants import BASE_FILENAMES, REPO_PATH, FILEPATH, TableColumns
 
 
 class ExportDataService:
@@ -13,9 +13,9 @@ class ExportDataService:
 
     def create_data_folders(self) -> None:
         if 'tmp_data' not in os.listdir():
-            os.mkdir('tmp_data')
+            os.mkdir('../tmp_data')
         if 'exported_data' not in os.listdir():
-            os.mkdir('exported_data')
+            os.mkdir('../exported_data')
 
     def _create_sim_folder(self) -> str:
         actual_time = datetime.now().strftime("%d-%m-%Y_%H%M%S")

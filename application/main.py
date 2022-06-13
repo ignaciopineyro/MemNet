@@ -1,15 +1,15 @@
 from constants import BASE_FILENAMES
-from pwl_generation import PWLService
-from netlist_generation import SpiceNetlistService
-from network_generation import NetworkService
-from export_data import ExportDataService
+from application.services.externalsourceservice import ExternalSourceService
+from application.services.netlistservice import NetlistService
+from application.services.networkservice import NetworkService
+from application.services.exportdataservice import ExportDataService
 
 
 def main() -> None:
     """Main function to execute the simulations script"""
     export_data_service = ExportDataService()
-    pwl_service = PWLService()
-    netlist_service = SpiceNetlistService()
+    pwl_service = ExternalSourceService()
+    netlist_service = NetlistService()
     network_service = NetworkService()
 
     export_data_service.create_data_folders()

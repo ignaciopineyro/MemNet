@@ -1,7 +1,7 @@
-from config import network_parameters
+from application.config import network_parameters
 import networkx as nx
 import matplotlib.pyplot as plt
-from constants import NodeColors
+from application.constants import NodeColors
 
 
 class NetworkService:

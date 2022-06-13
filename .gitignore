@@ -1,2 +1,9 @@
 # Temporal files
 # ./application/tmp_data
+
+# Folders
+./application/exported_data
+./NGSpice
+
+# Files
+./application/Analyzing-one-memristive-unit.py

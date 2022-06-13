@@ -1,6 +1,6 @@
 Memristor test implementation
 
-.include pershin.sub
+.include models/pershin.sub
 
 V1 vin gnd sin 0 5 1
 
@@ -11,6 +11,6 @@ xmem0 vin gnd l0 memristor
 run
 set wr_vecnames
 set wr_singlescale 
-wrdata memristor_simulation.csv vin i(v1) l0
+wrdata spice/simulated_subcircuit_data/memristor_simulation.csv vin i(v1) l0
 .endc
 .end

@@ -9,10 +9,12 @@ from scipy.signal import argrelextrema
 BASE_FILENAMES = "simulation"
 REPO_PATH = os.path.dirname(__file__)
 SIMULATIONS_PATH = os.path.join(REPO_PATH, "exported_data")
+print(f'\n\nREPO_PATH={REPO_PATH}\n\n')
 
-path = os.path.join(SIMULATIONS_PATH, '03-05-2022_193532')
-
+#path = os.path.join(SIMULATIONS_PATH, 'memristor_simulation.csv')
+path = os.path.join('../NGSpice', 'memristor_simulation')
 # all_files = glob.glob(path + "/*.csv")
+print(f'\n\npath={path}\n\n')
 all_files = glob.glob(os.path.join(path, "*.csv"))
 
                         ## Option 1 - the output seems to be a list
@@ -25,8 +27,8 @@ all_files = glob.glob(os.path.join(path, "*.csv"))
 # frame = pd.concat(li, axis=0, ignore_index=True)
 
                         ## Option 2 - the output is a core frame
-    
-df = pd.DataFrame(np.concatenate([pd.read_csv(f)[1:len(pd.read_csv(f))+1] for f in all_files]), columns=pd.read_csv(all_files[0]).columns)
+print(f'\n\nall_files={all_files}\n\n')
+df = pd.DataFrame(np.concatenate([pd.read_csv(f, sep=r"\s+")[1:len(pd.read_csv(f, sep=r"\s+"))+1] for f in all_files]), columns=pd.read_csv(all_files[0], sep=r"\s+").columns)
 
 
 # sim = np.matrix(concatenated_df)
